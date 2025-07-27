@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+
+/* 2. Creamos una clase para usarla fácilmente */
+.font-principal {
+    font-family: 'Varela Round', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}

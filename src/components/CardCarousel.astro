@@ -1,0 +1,83 @@
+---
+// src/components/CardCarousel.astro
+import CardSpotlight from './CardSpotlight.astro';
+const { items } = Astro.props;
+---
+
+<div class="swiper w-full">
+  <div class="swiper-wrapper items-stretch py-4">
+    {items.map(item => (
+      <div class="swiper-slide h-auto flex border rounded-lg border-indigo-800">
+        <CardSpotlight
+          imgSrc={item.imgSrc}
+          title={item.title}
+          text={item.text}
+          titleSize={item.titleSize}
+          layout="carousel"
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Autoplay } from 'swiper/modules';
+  import 'swiper/css';
+
+  function equalizeSlideHeights(swiperInstance) {
+    // Le damos un pequeño respiro para que las imágenes terminen de cargar
+    setTimeout(() => {
+      const slides = swiperInstance.slides;
+      let maxHeight = 0;
+
+      // 1. Reseteamos la altura de todos los slides para poder recalcular
+      slides.forEach(slide => {
+        slide.style.height = 'auto';
+      });
+
+      // 2. Encontramos la altura máxima
+      slides.forEach(slide => {
+        if (slide.offsetHeight > maxHeight) {
+          maxHeight = slide.offsetHeight;
+        }
+      });
+
+      // 3. Aplicamos esa altura máxima a TODOS los slides
+      slides.forEach(slide => {
+        slide.style.height = `${maxHeight}px`;
+      });
+    }, 300); // 300ms de espera
+  }
+
+  const swiper = new Swiper('.swiper', {
+    // --- TUS OPCIONES ORIGINALES ---
+    modules: [Autoplay],
+    loop: true,
+    spaceBetween: 30,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    slidesPerView: 1,
+    breakpoints: {
+      768: { slidesPerView: 2, spaceBetween: 40 },
+      1024: { slidesPerView: 3, spaceBetween: 50 },
+    },
+
+    on: {
+      // Se ejecuta cuando el carrusel se inicializa
+      init: function (swiperInstance) {
+        equalizeSlideHeights(swiperInstance);
+      },
+      // Se ejecuta si el tamaño de la ventana cambia (importante para responsive)
+      resize: function (swiperInstance) {
+        equalizeSlideHeights(swiperInstance);
+      },
+       // Se ejecuta después de un cambio de slide, por si las alturas cambian
+      slideChange: function (swiperInstance) {
+        equalizeSlideHeights(swiperInstance);
+      }
+    }
+  });
+</script>
