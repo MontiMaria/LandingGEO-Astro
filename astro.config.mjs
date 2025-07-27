@@ -7,4 +7,6 @@ export default defineConfig({
     vite: {
         plugins: [tailwindcss()],
     },
+    site: 'https://MontiMaria.github.io', // Reemplazá con tu usuario
+    base: '/LandingAstro/',  
 });
