@@ -8,6 +8,6 @@ export default defineConfig({
         plugins: [tailwindcss()],
     },
     site: 'https://MontiMaria.github.io', // Reemplazá con tu usuario
-    base: '/LandingAstro/',  
+    base: '/LandingAstro',  
     outDir: 'docs', 
 });
