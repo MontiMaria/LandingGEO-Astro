@@ -7,7 +7,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   output: 'static',
-  site: 'https://MontiMaria.github.io',
+  site: 'https://montimaria.github.io',
   base: '/LandingAstro',
   outDir: 'docs',
 });
