@@ -9,4 +9,5 @@ export default defineConfig({
     },
     site: 'https://MontiMaria.github.io', // Reemplazá con tu usuario
     base: '/LandingAstro/',  
+    outDir: 'docs', 
 });
