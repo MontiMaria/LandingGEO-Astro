@@ -9,5 +9,4 @@ export default defineConfig({
   output: 'static',
   site: 'https://montimaria.github.io',
   base: '/LandingGEO-Astro',
-  outDir: 'docs',
 });
